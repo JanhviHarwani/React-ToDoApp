@@ -1,23 +1,25 @@
 import { Component } from "react";
+import Task from "./Task";
 import css from "./Tasks.module.css";
+import PropTypes from "prop-types";
+
 class Tasks extends Component {
   render() {
     return (
       <ul className={css["task-wrapper"]}>
         {this.props.passedData.map((obj) => (
-          <li key={obj.id} className={css["individual-tasks-wrapper"]}>
-            <label htmlFor={obj.id} className={css["container"]}>
-              <div className={css["check-box"]}>
-                <input id={obj.id} type="checkbox" />
-                <span className={css["individual-task"]}>{obj.data}</span>
-                <span className={css["checkmark"]}></span>
-              </div>
-            </label>
-          </li>
+          <Task key={obj.id} htmlFor={obj.id} id={obj.id} data={obj.data} />
         ))}
       </ul>
     );
   }
 }
-
+Tasks.propTypes={
+  passedData: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.number,
+      data: PropTypes.string,
+    })
+  ),
+}
 export default Tasks;

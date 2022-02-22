@@ -1,7 +1,19 @@
-.addBtn{
-   
-      /* position: fixed; */
-      z-index: 10;
-      /* top: 49vh; */
-      margin-top: -35px;
+.addBtn {
+  z-index: 10;
+  margin-top: -35px;
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #63c89c;
+  background-color: #50e3a4;
+  border: none;
+  font-size: 38px;
+  text-align: center;
+
+}
+
+.addBtn:hover {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
 }
