@@ -8,7 +8,7 @@ class Tasks extends Component {
     return (
       <ul className={css["task-wrapper"]}>
         {this.props.passedData.map((obj) => (
-          <Task key={obj.id} htmlFor={obj.id} id={obj.id} data={obj.data} />
+          <Task key={obj.id} id={obj.id} data={obj.data} />
         ))}
       </ul>
     );
