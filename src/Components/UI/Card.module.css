@@ -1,12 +1,12 @@
 .card{
     height:auto;
-    width:300px;
+    width:320px;
     background-color: white;
     box-shadow: 4px 4px #c3c3c31a;
     padding:15%;
 }
 @media screen and (max-width: 600px) {
     .card {
-      width:fit-content;
+      width:320px;
     }
   }

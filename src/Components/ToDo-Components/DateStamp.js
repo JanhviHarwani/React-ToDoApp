@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import css from "./DateStamp.module.css";
 
-const DateStamp = () => {
+const DateStamp = ({curerntDate}) => {
   const dateStamp = new Date();
   const date = dateStamp.getDate();
+  
+  useEffect(()=>{
+    curerntDate(date);
+  },[curerntDate, date])
+ 
   const month = dateStamp.toLocaleString("en-US", { month: "short" });
   const day = dateStamp.toLocaleString("en-US", { weekday: "long" });
   const year = dateStamp.getFullYear();
