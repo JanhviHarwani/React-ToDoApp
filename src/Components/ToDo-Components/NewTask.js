@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ErrorModal from "../UI/ErrorModal";
 import css from "./NewTask.module.css";
+import PropTypes from "prop-types";
 
 function NewTask({ getData, gotEscReq }) {
   const [newTask, setNewTask] = useState("");
@@ -51,4 +52,8 @@ function NewTask({ getData, gotEscReq }) {
   );
 }
 
+NewTask.propTypes = {
+  getData:PropTypes.func,
+  gotEscReq:PropTypes.func
+};
 export default NewTask;

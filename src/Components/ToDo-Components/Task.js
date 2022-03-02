@@ -39,5 +39,7 @@ class Task extends Component {
 Task.propTypes = {
   id: PropTypes.string,
   data: PropTypes.string,
+  completed:PropTypes.bool,
+  setToDosStatus:PropTypes.func
 };
 export default Task;

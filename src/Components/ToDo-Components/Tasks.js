@@ -26,5 +26,6 @@ Tasks.propTypes = {
       completed: bool,
     })
   ),
+  setToDos: PropTypes.func
 };
 export default Tasks;

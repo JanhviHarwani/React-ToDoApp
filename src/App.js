@@ -48,10 +48,8 @@ function App() {
       ];
     });
   };
-  // const completed=tasksUpdated.filter(e=>e.completed)
   return (
     <div className={css.container}>
-      {/* <p>{completed.length}/{tasksUpdated.length}</p> */}
       <TodoCard addedTask={tasksUpdated} setToDos={setTasksUpdated} />
       {showInput && (
         <NewTask gotEscReq={escReqHandler} getData={getDataHandler} />

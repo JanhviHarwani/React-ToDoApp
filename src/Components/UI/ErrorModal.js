@@ -1,18 +1,20 @@
 import styles from "./ErrorModal.module.css";
 import ReactDom from "react-dom";
-const Backdrop = (props) => {
-  return <div className={styles.backdrop} onClick={props.onClosePopUp} />;
+import PropTypes from "prop-types";
+
+const Backdrop = ({ onClosePopUp }) => {
+  return <div className={styles.backdrop} onClick={onClosePopUp} />;
 };
-const PopUp = (props) => {
+const PopUp = ({ title, message, onClosePopUp }) => {
   return (
     <div className={styles.modal}>
       <header className={styles.header}>
-        <h2>{props.title}</h2>
+        <h2>{title}</h2>
       </header>
       <div className={styles.content}>
-        <p>{props.message}</p>
+        <p>{message}</p>
         <footer className={styles.actions}>
-          <button className={styles.button} onClick={props.onClosePopUp}>
+          <button className={styles.button} onClick={onClosePopUp}>
             OK
           </button>
         </footer>
@@ -20,22 +22,32 @@ const PopUp = (props) => {
     </div>
   );
 };
-const ErrorModal = (props) => {
+const ErrorModal = ({ title, message, onClosePopUp }) => {
   return (
     <>
       {ReactDom.createPortal(
-        <Backdrop onClosePopUp={props.onClosePopUp} />,
+        <Backdrop onClosePopUp={onClosePopUp} />,
         document.getElementById("backdrop-root")
       )}
       {ReactDom.createPortal(
-        <PopUp
-          title={props.title}
-          message={props.message}
-          onClosePopUp={props.onClosePopUp}
-        />,
+        <PopUp title={title} message={message} onClosePopUp={onClosePopUp} />,
         document.getElementById("popup-root")
       )}
     </>
   );
+};
+
+ErrorModal.propTypes = {
+  title: PropTypes.string,
+  message: PropTypes.string,
+  onClosePopUp: PropTypes.func,
+};
+PopUp.propTypes = {
+  title: PropTypes.string,
+  message: PropTypes.string,
+  onClosePopUp: PropTypes.func,
+};
+Backdrop.propTypes = {
+  onClosePopUp: PropTypes.func,
 };
 export default ErrorModal;
