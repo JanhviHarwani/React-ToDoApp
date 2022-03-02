@@ -2,16 +2,11 @@ import Card from "../UI/Card";
 import DateStamp from "./DateStamp";
 import Tasks from "./Tasks";
 
-const TodoCard = ({ addedTask,currDate }) => {
-  const getDateHandler=(today)=>{
-    const date=today;
-  currDate(date);
-   
-  }
+const TodoCard = ({ addedTask, setToDos }) => {
   return (
     <Card>
-      <DateStamp curerntDate={getDateHandler} />
-      <Tasks passedData={addedTask} />
+      <DateStamp />
+      <Tasks setToDos={setToDos} passedData={addedTask} />
     </Card>
   );
 };

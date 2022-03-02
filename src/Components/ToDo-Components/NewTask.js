@@ -25,7 +25,6 @@ function NewTask({ getData, gotEscReq }) {
         });
       }
     }
-
   };
   const ClosePopUpHandler = () => {
     setErrorPopUP(null);

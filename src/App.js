@@ -1,75 +1,58 @@
-import React, { useEffect, useState } from "react";
-import addDays from 'date-fns/addDays'
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import addDays from "date-fns/addDays";
 import TodoCard from "./Components/ToDo-Components/TodoCard";
 import AddTaskButton from "./Components/UI/AddTaskButton";
 import css from "./Components/App.module.css";
 import NewTask from "./Components/ToDo-Components/NewTask";
+import { v4 as uuidv4 } from "uuid";
+import useLocalStorage from "./Components/hooks/use-localStorage";
 
-// let DATA;
-// if (localStorage.getItem("tasks") === null) {
-//   DATA = [];
-// } else {
-//   DATA = JSON.parse(localStorage.getItem("tasks"));
-// }
 function App() {
-  const [date, setDate] = useState("");
-
   const [showInput, setShowInput] = useState(false);
+  const [tasksUpdated, setTasksUpdated] = useLocalStorage("todos", []);
 
-  const [tasksUpdated, setTasksUpdated] = useState(()=>{
-    if (localStorage.getItem("tasks") === null) {
-      return [];
-    } else {
-      return JSON.parse(localStorage.getItem("tasks"));
-    }
-
-  });
-  // const newdateStamp = new Date();
-  // let newdate = newdateStamp.getDate();
-
-  const buttonClickedHandler = (buttonClickedState) => {
-    if (buttonClickedState) {
-      setShowInput(true);
-    }
-  };
-useEffect(()=>{
-  localStorage.setItem('expiry',addDays(new Date(),1).getDate())
-  console.log(localStorage.getItem("expiry"))
-},[])
-  
-useEffect(() => {
-const expiry=localStorage.getItem("expiry");
-if(new Date().getDate()===expiry){
-  console.log("expiry is equals to date")
-  setTasksUpdated([])
-  localStorage.removeItem('tasks')
-}
- else {
-      return JSON.parse(localStorage.getItem("tasks"));
-    }
+  useEffect(() => {
+    localStorage.setItem(
+      "expiryDate",
+      String(addDays(new Date(), 1).getDate())
+    );
   }, []);
-useEffect(()=>{
-  localStorage.setItem("tasks", JSON.stringify(tasksUpdated));
-},[tasksUpdated])
+
+  useLayoutEffect(() => {
+    const expiry = localStorage.getItem("expiryDate");
+    if (String(new Date().getDate()) === expiry) {
+      console.log("expiry is equals to date");
+      setTasksUpdated([]);
+      localStorage.removeItem("todos");
+    } else {
+      JSON.parse(localStorage.getItem("todos"));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const escReqHandler = (escReq) => {
     if (escReq) {
       setShowInput(false);
     }
   };
-
+  const buttonClickedHandler = (buttonClickedState) => {
+    if (buttonClickedState) {
+      setShowInput(true);
+    }
+  };
   const getDataHandler = (addedTask) => {
     setTasksUpdated((prevStates) => {
-      return [...prevStates, { id: Math.random(), data: addedTask }];
+      return [
+        ...prevStates,
+        { id: uuidv4(), data: addedTask, completed: false },
+      ];
     });
   };
-
-  const getDatehandler = (gotDate) => {
-    setDate(gotDate);
-  };
-
+  // const completed=tasksUpdated.filter(e=>e.completed)
   return (
     <div className={css.container}>
-      <TodoCard addedTask={tasksUpdated} currDate={getDatehandler} />
+      {/* <p>{completed.length}/{tasksUpdated.length}</p> */}
+      <TodoCard addedTask={tasksUpdated} setToDos={setTasksUpdated} />
       {showInput && (
         <NewTask gotEscReq={escReqHandler} getData={getDataHandler} />
       )}

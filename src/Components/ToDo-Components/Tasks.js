@@ -1,14 +1,18 @@
 import Task from "./Task";
 import css from "./Tasks.module.css";
-import PropTypes from "prop-types";
+import PropTypes, { bool } from "prop-types";
 
-function Tasks({ passedData }) {
-  
+function Tasks({ passedData, setToDos }) {
   return (
     <ul className={css["task-wrapper"]}>
-      
       {passedData.map((obj) => (
-        <Task key={obj.id} id={obj.id} data={obj.data} />
+        <Task
+          setToDosStatus={setToDos}
+          completed={obj.completed}
+          key={obj.id}
+          id={obj.id}
+          data={obj.data}
+        />
       ))}
     </ul>
   );
@@ -17,8 +21,9 @@ function Tasks({ passedData }) {
 Tasks.propTypes = {
   passedData: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.number,
+      id: PropTypes.string,
       data: PropTypes.string,
+      completed: bool,
     })
   ),
 };
