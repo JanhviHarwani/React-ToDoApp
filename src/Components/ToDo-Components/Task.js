@@ -7,7 +7,7 @@ class Task extends Component {
     this.props.setToDosStatus((prevTodos) => [
       ...prevTodos.map((todo) => {
         if (todo.id === id) {
-          todo.completed = completed;
+          return{...todo,completed:!todo.completed};
         }
         return todo;
       }),

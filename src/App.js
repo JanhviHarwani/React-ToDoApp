@@ -8,6 +8,13 @@ import { v4 as uuidv4 } from "uuid";
 import useLocalStorage from "./Components/hooks/use-localStorage";
 
 function App() {
+  // window.addEventListener('keydown', (e) => {
+  //   if(e.key === "Escape"){
+  //     setShowInput(false);
+  //     console.log("key pressed")
+  //   }
+  // });
+
   const [showInput, setShowInput] = useState(false);
   const [tasksUpdated, setTasksUpdated] = useLocalStorage("todos", []);
 
@@ -48,14 +55,26 @@ function App() {
       ];
     });
   };
+  const keydownhandler = (e) => {
+    if (showInput) {
+      if (e.key === "Escape") {
+        // console.log("esc clicked");
+        setShowInput(false);
+      }
+    }
+  };
   return (
-    <div className={css.container}>
+    <div tabIndex={"0"} className={css['layout-container']} onKeyDown={keydownhandler}>
+    <main className={css.container}>
       <TodoCard addedTask={tasksUpdated} setToDos={setTasksUpdated} />
-      {showInput && (
+      {showInput ? (
         <NewTask gotEscReq={escReqHandler} getData={getDataHandler} />
-      )}
-      {!showInput && <AddTaskButton onButtonClicked={buttonClickedHandler} />}
-    </div>
+        ) : (
+          <AddTaskButton onButtonClicked={buttonClickedHandler} />
+          )}
+    </main>
+          </div>
+    
   );
 }
 

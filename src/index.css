@@ -12,5 +12,15 @@ body {
   justify-content: center;
   margin: 0;
   background-color: #f0efe9;
-  color:#212529c4;;
+  color:#212529c4;
+  height:100vh !important;
+  width:100% !important;
+}
+
+#root{
+  width: 100% !important;
+  height: 100vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
