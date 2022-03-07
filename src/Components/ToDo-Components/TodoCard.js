@@ -11,13 +11,13 @@ const TodoCard = ({ addedTask, setToDos }) => {
   );
 };
 TodoCard.propTypes = {
-  addedTask: PropTypes.arrayOf(  
+  addedTask: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string,
       data: PropTypes.string,
       completed: bool,
     })
   ),
-  setToDos: PropTypes.func
+  setToDos: PropTypes.func,
 };
 export default TodoCard;

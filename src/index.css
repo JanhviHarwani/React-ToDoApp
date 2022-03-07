@@ -3,7 +3,9 @@
 }
 
 html {
-  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 body {
@@ -12,12 +14,12 @@ body {
   justify-content: center;
   margin: 0;
   background-color: #f0efe9;
-  color:#212529c4;
-  height:100vh !important;
-  width:100% !important;
+  color: #212529c4;
+  height: 100vh !important;
+  width: 100% !important;
 }
 
-#root{
+#root {
   width: 100% !important;
   height: 100vh !important;
   display: flex;

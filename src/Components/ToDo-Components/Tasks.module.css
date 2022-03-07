@@ -1,5 +1,4 @@
 .task-wrapper {
-  display: grid;
   height: 200px;
 }
 ::-webkit-scrollbar {

@@ -1,34 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ErrorModal from "../UI/ErrorModal";
 import css from "./NewTask.module.css";
 import PropTypes from "prop-types";
 
-function NewTask({ getData, gotEscReq }) {
-  // const [blur,setBlur]=useState(false)
+export default function NewTask({ getData, gotEscReq }) {
   const [newTask, setNewTask] = useState("");
   const [errorPopUp, setErrorPopUP] = useState();
   const [escReq, setEscReq] = useState(false);
   const changeHandler = (e) => {
-    // console.log(e.focus())
     setNewTask(e.target.value);
   };
-  // const focusOutHandler=()=>{
-  //   setBlur(true)
-  //   // console.log("lost focus")
-  // }
-  const inputRef=useRef();
-  
-    // if(!inputRef.current.focus()){
-    //   setEscReq(true);
-    //   gotEscReq(escReq);
-    // }
-  
   const keyDownHandler = (e) => {
-    // if(blur){  if (e.key === "Escape") {
-    //   console.log("esc pressed after blur")
-    //   setEscReq(true);
-    //   gotEscReq(escReq);
-    // }}
     if (e.key === "Escape") {
       setEscReq(true);
       gotEscReq(escReq);
@@ -59,13 +41,12 @@ function NewTask({ getData, gotEscReq }) {
         />
       )}
       <input
+        autoFocus
         className={css["input_field"]}
         type="text"
         placeholder="Add your new task"
         onKeyDown={keyDownHandler}
         value={newTask}
-        ref={inputRef}
-        // onBlur={focusOutHandler}
         onChange={changeHandler}
       />
     </>
@@ -73,7 +54,6 @@ function NewTask({ getData, gotEscReq }) {
 }
 
 NewTask.propTypes = {
-  getData:PropTypes.func,
-  gotEscReq:PropTypes.func
+  getData: PropTypes.func,
+  gotEscReq: PropTypes.func,
 };
-export default NewTask;

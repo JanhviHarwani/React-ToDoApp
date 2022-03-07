@@ -3,11 +3,11 @@ import css from "./Task.module.css";
 import PropTypes from "prop-types";
 
 class Task extends Component {
-  statusHandler(completed, id) {
+  statusHandler(id) {
     this.props.setToDosStatus((prevTodos) => [
       ...prevTodos.map((todo) => {
         if (todo.id === id) {
-          return{...todo,completed:!todo.completed};
+          return { ...todo, completed: !todo.completed };
         }
         return todo;
       }),
@@ -24,7 +24,7 @@ class Task extends Component {
               type="checkbox"
               checked={this.props.completed}
               onChange={(e) => {
-                this.statusHandler(e.target.checked, this.props.id);
+                this.statusHandler(this.props.id);
               }}
             />
             <span className={css["individual-task"]}>{this.props.data}</span>
@@ -39,7 +39,7 @@ class Task extends Component {
 Task.propTypes = {
   id: PropTypes.string,
   data: PropTypes.string,
-  completed:PropTypes.bool,
-  setToDosStatus:PropTypes.func
+  completed: PropTypes.bool,
+  setToDosStatus: PropTypes.func,
 };
 export default Task;
