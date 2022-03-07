@@ -3,8 +3,7 @@
   align-items: center;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  padding-bottom:25px;
-  grid-column-gap: 4%;
+  padding-bottom: 25px;
 }
 .date {
   font-weight: 600;

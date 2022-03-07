@@ -1,25 +1,25 @@
-import { Component } from "react";
 import Task from "./Task";
 import css from "./Tasks.module.css";
-import PropTypes from "prop-types";
+import PropTypes, { bool } from "prop-types";
 
-class Tasks extends Component {
-  render() {
-    return (
-      <ul className={css["task-wrapper"]}>
-        {this.props.passedData.map((obj) => (
-          <Task key={obj.id} id={obj.id} data={obj.data} />
-        ))}
-      </ul>
-    );
-  }
+function Tasks({ taskAdded, setToDos }) {
+  return (
+    <ul className={css["task-wrapper"]}>
+      {taskAdded.map((obj) => (
+        <Task setToDosStatus={setToDos} key={obj.id} {...obj} />
+      ))}
+    </ul>
+  );
 }
-Tasks.propTypes={
-  passedData: PropTypes.arrayOf(
+
+Tasks.propTypes = {
+  taskAdded: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.number,
+      id: PropTypes.string,
       data: PropTypes.string,
+      completed: bool,
     })
   ),
-}
+  setToDos: PropTypes.func,
+};
 export default Tasks;

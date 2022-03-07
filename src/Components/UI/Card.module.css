@@ -1,12 +1,13 @@
-.card{
-    height:auto;
-    width:300px;
-    background-color: white;
-    box-shadow: 4px 4px #c3c3c31a;
-    padding:15%;
+.card {
+  height: auto;
+  width: 320px;
+  background-color: white;
+  box-shadow: 4px 4px #c3c3c31a;
+  padding: 15%;
+  display: inline-block;
 }
 @media screen and (max-width: 600px) {
-    .card {
-      width:fit-content;
-    }
+  .card {
+    width: 320px;
   }
+}

@@ -3,6 +3,7 @@ import css from "./DateStamp.module.css";
 const DateStamp = () => {
   const dateStamp = new Date();
   const date = dateStamp.getDate();
+
   const month = dateStamp.toLocaleString("en-US", { month: "short" });
   const day = dateStamp.toLocaleString("en-US", { weekday: "long" });
   const year = dateStamp.getFullYear();

@@ -1,22 +1,45 @@
-import React from "react";
-import css from './Task.module.css'
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import css from "./Task.module.css";
+import PropTypes from "prop-types";
 
-function Task({id,data}) {
-  return (
-    <li className={css["individual-tasks-wrapper"]}>
-      <label htmlFor={id} className={css["container"]}>
-        <div className={css["check-box"]}>
-          <input id={id} type="checkbox" />
-          <span className={css["individual-task"]}>{data}</span>
-          <span className={css["checkmark"]}></span>
-        </div>
-      </label>
-    </li>
-  );
+class Task extends Component {
+  statusHandler(id) {
+    this.props.setToDosStatus((prevTodos) => [
+      ...prevTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: !todo.completed };
+        }
+        return todo;
+      }),
+    ]);
+  }
+
+  render() {
+    return (
+      <li className={css["individual-tasks-wrapper"]}>
+        <label htmlFor={this.props.id} className={css["container"]}>
+          <div className={css["check-box"]}>
+            <input
+              id={this.props.id}
+              type="checkbox"
+              checked={this.props.completed}
+              onChange={(e) => {
+                this.statusHandler(this.props.id);
+              }}
+            />
+            <span className={css["individual-task"]}>{this.props.data}</span>
+            <span className={css["checkmark"]}></span>
+          </div>
+        </label>
+      </li>
+    );
+  }
 }
-Task.propTypes={
-  id:PropTypes.number,
-  data:PropTypes.string
-}
+
+Task.propTypes = {
+  id: PropTypes.string,
+  data: PropTypes.string,
+  completed: PropTypes.bool,
+  setToDosStatus: PropTypes.func,
+};
 export default Task;

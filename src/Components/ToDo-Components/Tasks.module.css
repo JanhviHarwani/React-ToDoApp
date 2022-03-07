@@ -1,12 +1,18 @@
 .task-wrapper {
-  display: grid;
+  height: 200px;
+}
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 
-ul{
+ul {
   list-style-type: none;
   margin: 0 !important;
   padding-inline-start: 0 !important;
   margin-block-end: 0 !important;
   margin-block-start: 0 !important;
-}
 
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
