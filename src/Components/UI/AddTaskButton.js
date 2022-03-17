@@ -1,12 +1,9 @@
-import { useState } from "react";
 import css from "./AddButton.module.css";
 import PropTypes from "prop-types";
 
-const AddTaskButton = ({ onButtonClicked }) => {
-  const [buttonClicked, setButtonClicked] = useState(false);
+const AddTaskButton = ({ setShowInput }) => {
   const clickHandler = () => {
-    setButtonClicked(true);
-    onButtonClicked(buttonClicked);
+    setShowInput(true);
   };
   return (
     <button onClick={clickHandler} type="button" className={css["addBtn"]}>

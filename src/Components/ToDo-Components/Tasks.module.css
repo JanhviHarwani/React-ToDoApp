@@ -3,7 +3,7 @@
 }
 ::-webkit-scrollbar {
   width: 0px; /* Remove scrollbar space */
-  background: transparent; /* Optional: just make scrollbar invisible */
+  background: #c3c3c3; /* Optional: just make scrollbar invisible */
 }
 
 ul {

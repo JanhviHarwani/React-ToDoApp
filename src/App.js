@@ -35,11 +35,7 @@ function App() {
       setShowInput(false);
     }
   };
-  const buttonClickedHandler = (buttonClickedState) => {
-    if (buttonClickedState) {
-      setShowInput(true);
-    }
-  };
+
   const getDataHandler = (addedTask) => {
     setTasksUpdated((prevStates) => {
       return [
@@ -66,7 +62,7 @@ function App() {
         {showInput ? (
           <NewTask gotEscReq={escReqHandler} getData={getDataHandler} />
         ) : (
-          <AddTaskButton onButtonClicked={buttonClickedHandler} />
+          <AddTaskButton setShowInput={setShowInput} />
         )}
       </main>
     </div>
